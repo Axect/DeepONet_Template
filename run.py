@@ -12,7 +12,7 @@ import wandb
 from rich.progress import Progress
 
 # Neural Hamilton modules
-from deeponet.model import DeepONet, VAONet, TFONet, KANON, VAKON
+from deeponet.model import DeepONet, VAONet, TFONet, KANON
 from deeponet.data import train_dataset
 from deeponet.train import Trainer, VAETrainer
 
@@ -149,35 +149,6 @@ def define_model():
         }
         model = KANON(hparams)
         run_name = f"kan_{hidden_size}_{hidden_depth}_{num_branch}"
-    elif model_type == 4:
-        hidden_size = survey.routines.numeric(
-            "Enter hidden_size (e.g. 64)", decimal=False)
-        num_layers = survey.routines.numeric(
-            "Enter num_layers (e.g. 4)", decimal=False)
-        latent_size = survey.routines.numeric(
-            "Enter latent_size (e.g. 10)", decimal=False)
-        dropout = survey.routines.numeric("Enter dropout (e.g. 0.1)")
-        learning_rate = survey.routines.numeric(
-            "Enter learning_rate (e.g. 1e-2)")
-        kl_weight = survey.routines.numeric("Enter kl_weight (e.g. 1e-3)")
-        batch_size = survey.routines.numeric(
-            "Enter batch_size (e.g. 1000)", decimal=False)
-        epochs = survey.routines.numeric(
-            "Enter epochs (e.g. 100)", decimal=False)
-        power = survey.routines.numeric("Enter power (e.g. 2.0)")
-        hparams = {
-            "hidden_size": hidden_size,
-            "num_layers": num_layers,
-            "latent_size": latent_size,
-            "dropout": dropout,
-            "learning_rate": learning_rate,
-            "kl_weight": kl_weight,
-            "batch_size": batch_size,
-            "epochs": epochs,
-            "power": power
-        }
-        model = VAKON(hparams)
-        run_name = f"vak_{hidden_size}_{num_layers}_{latent_size}"
 
     return model, hparams, run_name, model_type
 
