@@ -193,11 +193,8 @@ def main():
     model.to(device)
 
     # Optimizer and scheduler
-    # optimizer = Adam(model.parameters(), lr=hparams["learning_rate"])
-    optimizer = AdamW(model.parameters(), betas=(
-        0.9, 0.98), lr=hparams["learning_rate"])
-    scheduler = PolynomialLR(optimizer, total_iters=int(
-        hparams["epochs"]), power=hparams["power"])
+    optimizer = AdamW(model.parameters(), betas=(0.9, 0.98), lr=hparams["learning_rate"])
+    scheduler = PolynomialLR(optimizer, total_iters=int(hparams["epochs"]), power=hparams["power"])
 
     # Trainer
     if model_type == 1 or model_type == 4:
