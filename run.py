@@ -28,7 +28,7 @@ def define_model():
     """
     model_type = survey.routines.select(
         "Select model type",
-        options=["DeepONet", "VAONet", "TFONet", "KANON", "VAKON"]
+        options=["DeepONet", "VAONet", "TFONet", "KANON"]
     )
     if model_type == 2:
         d_model = survey.routines.numeric(
